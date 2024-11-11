@@ -78,7 +78,7 @@ int start = 0;
 int bias_update;
 float gyro_cal_x, gyro_cal_y, gyro_cal_z, corrX, corrY, corrZ;
 float freq = (float) SAMPLE_FREQUENCY;
-MFXState_t mfxstate;
+static uint8_t mfxstate[STATE_SIZE];
 MFX_input_t data_in;
 MFX_output_t data_out;
 float dT;
@@ -127,7 +127,7 @@ int main(void) {
 	//MotionGC_Initialize(MGC_MCU_STM32, &freq);
 	MotionFX_enable_6X(mfxstate, MFX_ENGINE_ENABLE);
 	start++;
-	MotionFX_initialize(mfxstate);
+	MotionFX_initialize((MFXState_t *)mfxstate);
 	start++;
 
 	/* USER CODE END 2 */
